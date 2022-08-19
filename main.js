@@ -185,7 +185,10 @@ equals.addEventListener('click', () => {
         const display = document.createElement('div');
         display.classList.add('display');
         solution = operate(equation, operand1, operand2);
-        display.textContent = solution.toFixed(3);
+        if (solution > 0 || solution < 0) {
+            solution = solution.toFixed(3).replace(/\.?0+$/, "");
+        }
+        display.textContent = solution;
 
         c2 = document.getElementById('container2');
         c2.appendChild(display);
