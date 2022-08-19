@@ -29,11 +29,9 @@ const operate = function(operator, firstNum, secondNum) {
 };
 
 const numbers = document.querySelectorAll('.button1');
-console.log(numbers);
 numbers.forEach((button) => {
     button.addEventListener('click' , (event) => {
         let operand1 = event.target.innerHTML;
-        console.log(operand1);
 
         //Number appears in display
         const display = document.createElement('div');
@@ -42,5 +40,24 @@ numbers.forEach((button) => {
 
         let c2 = document.getElementById('container2');
         c2.appendChild(display);
+    });
+});
+
+//Stores operator type into a variable "equation"
+let equation = '';
+const oper = document.querySelectorAll('.button2');
+oper.forEach((button) => {
+    button.addEventListener('click', (event) => {
+        let sign = event.target.innerHTML;
+        
+        if (sign == '+') {
+            equation = 'add';
+        } else if (sign == '-') {
+            equation = 'subtract';
+        } else if (sign == "\u00d7") {
+            equation = 'multiply';
+        } else if (sign == "\u00f7") {
+            equation = 'divide';
+        };
     });
 });
