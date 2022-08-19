@@ -185,7 +185,7 @@ equals.addEventListener('click', () => {
         const display = document.createElement('div');
         display.classList.add('display');
         solution = operate(equation, operand1, operand2);
-        display.textContent = solution;
+        display.textContent = solution.toFixed(3);
 
         c2 = document.getElementById('container2');
         c2.appendChild(display);
