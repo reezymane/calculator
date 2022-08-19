@@ -87,6 +87,13 @@ oper.forEach((button) => {
             equation = 'divide';
         };
 
+        //If there's been a previous solution, this makes that solution the first operand
+        if (y > 0) {
+            numString = solution;
+            operand2 = undefined;
+            numString2 = '';    
+        };
+
         x++;
     });
 });
@@ -113,8 +120,6 @@ equals.addEventListener('click', () => {
 
         c2 = document.getElementById('container2');
         c2.appendChild(display);
-        operand1 = solution;
-        operand2 = undefined;
 
         y++;
     };
