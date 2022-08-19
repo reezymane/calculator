@@ -15,7 +15,7 @@ const divide = function(a, b) {
     return a / b;
 };
 
-// Equals key function
+// Equals function
 const operate = function(operator, firstNum, secondNum) {
     if (operator == 'add') {
         return add(firstNum, secondNum);
@@ -68,6 +68,36 @@ numbers.forEach((button) => {
     });
 });
 
+const numberZero = document.querySelector('#button3');
+numberZero.addEventListener('click' , (event) => {
+    if (x === 0) {
+        numText = event.target.innerHTML;
+        numString = numString.concat(numText);
+
+        // Number appears in display
+        const display = document.createElement('div');
+        display.classList.add('display');
+        display.textContent = `${numText}`;
+
+        c2 = document.getElementById('container2');
+        c2.appendChild(display);
+    } else {
+        while (c2.firstChild) {
+            c2.removeChild(c2.firstChild);
+        };
+
+        numText = event.target.innerHTML;
+        numString2 = numString2.concat(numText);
+
+        const display = document.createElement('div');
+        display.classList.add('display');
+        display.textContent = `${numText}`;
+
+        c2 = document.getElementById('container2');
+        c2.appendChild(display);
+    };
+});
+
 // Stores operator type into a variable "equation"
 let equation = '';
 let x = 0;
@@ -83,6 +113,17 @@ oper.forEach((button) => {
             operand1 = parseFloat(numString);
             operand2 = parseFloat(numString2);
 
+            if (operand2 === 0 && equation === 'divide') {
+                while (c2.firstChild) {
+                    c2.removeChild(c2.firstChild);
+                };
+        
+                const display = document.createElement('div');
+                display.classList.add('display');
+                display.textContent = 'ERROR: Cannot divide by 0!';
+                c2 = document.getElementById('container2');
+                c2.appendChild(display);
+            } else {
             solution = operate(equation, operand1, operand2);
 
             numString = solution;
@@ -90,6 +131,7 @@ oper.forEach((button) => {
             numString2 = '';
 
             z++;
+            };
         };
         
         if (sign == '+') {
@@ -125,6 +167,16 @@ equals.addEventListener('click', () => {
 
     if (numString === '' || numString2 === '') {
         void(0);
+    } else if (operand2 === 0 && equation === 'divide') {
+        while (c2.firstChild) {
+            c2.removeChild(c2.firstChild);
+        };
+
+        const display = document.createElement('div');
+        display.classList.add('display');
+        display.textContent = 'ERROR: Cannot divide by 0!';
+        c2 = document.getElementById('container2');
+        c2.appendChild(display);
     } else {
         while (c2.firstChild) {
             c2.removeChild(c2.firstChild);
