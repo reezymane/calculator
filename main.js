@@ -34,7 +34,7 @@ let operand2 = undefined;
 let numString = '';
 let numString2 = '';
 
-//Stores numbers into variable "numString" and "numString2"
+// Stores numbers into variable "numString" and "numString2"
 let c2;
 const numbers = document.querySelectorAll('.button1');
 numbers.forEach((button) => {
@@ -43,7 +43,7 @@ numbers.forEach((button) => {
             numText = event.target.innerHTML;
             numString = numString.concat(numText);
 
-            //Number appears in display
+            // Number appears in display
             const display = document.createElement('div');
             display.classList.add('display');
             display.textContent = `${numText}`;
@@ -54,11 +54,10 @@ numbers.forEach((button) => {
             while (c2.firstChild) {
                 c2.removeChild(c2.firstChild);
             };
-            
+
             numText = event.target.innerHTML;
             numString2 = numString2.concat(numText);
 
-            //Number appears in display
             const display = document.createElement('div');
             display.classList.add('display');
             display.textContent = `${numText}`;
@@ -69,13 +68,29 @@ numbers.forEach((button) => {
     });
 });
 
-//Stores operator type into a variable "equation"
+// Stores operator type into a variable "equation"
 let equation = '';
 let x = 0;
+let z = 0;
+let sign;
 const oper = document.querySelectorAll('.button2');
 oper.forEach((button) => {
     button.addEventListener('click', (event) => {
-        let sign = event.target.innerHTML;
+        sign = event.target.innerHTML;
+        
+        // If user strings several operations
+        if (x > 0 && y === 0 && numString2 != '') {
+            operand1 = parseFloat(numString);
+            operand2 = parseFloat(numString2);
+
+            solution = operate(equation, operand1, operand2);
+
+            numString = solution;
+            operand2 = undefined;
+            numString2 = '';
+
+            z++;
+        };
         
         if (sign == '+') {
             equation = 'add';
@@ -87,18 +102,20 @@ oper.forEach((button) => {
             equation = 'divide';
         };
 
-        //If there's been a previous solution, this makes that solution the first operand
+        // If there's been a previous solution, this makes that solution the first operand
         if (y > 0) {
             numString = solution;
             operand2 = undefined;
             numString2 = '';    
         };
 
+
+
         x++;
     });
 });
 
-//Evaluates the equation and displays result
+// Evaluates the equation and displays result
 const equals = document.querySelector('#button5');
 let solution;
 let y = 0;
