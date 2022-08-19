@@ -35,24 +35,43 @@ let numString = '';
 let numString2 = '';
 
 //Stores numbers into variable "numString" and "numString2"
+let c2;
 const numbers = document.querySelectorAll('.button1');
 numbers.forEach((button) => {
     button.addEventListener('click' , (event) => {
-        numText = event.target.innerHTML;
-        numString = numString.concat(numText);
+        if (x === 0) {
+            numText = event.target.innerHTML;
+            numString = numString.concat(numText);
 
-        //Number appears in display
-        const display = document.createElement('div');
-        display.classList.add('display');
-        display.textContent = `${numText}`;
+            //Number appears in display
+            const display = document.createElement('div');
+            display.classList.add('display');
+            display.textContent = `${numText}`;
 
-        let c2 = document.getElementById('container2');
-        c2.appendChild(display);
+            c2 = document.getElementById('container2');
+            c2.appendChild(display);
+        } else {
+            while (c2.firstChild) {
+                c2.removeChild(c2.firstChild);
+            };
+            
+            numText = event.target.innerHTML;
+            numString2 = numString2.concat(numText);
+
+            //Number appears in display
+            const display = document.createElement('div');
+            display.classList.add('display');
+            display.textContent = `${numText}`;
+
+            c2 = document.getElementById('container2');
+            c2.appendChild(display);
+        };
     });
 });
 
 //Stores operator type into a variable "equation"
 let equation = '';
+let x = 0;
 const oper = document.querySelectorAll('.button2');
 oper.forEach((button) => {
     button.addEventListener('click', (event) => {
@@ -67,12 +86,36 @@ oper.forEach((button) => {
         } else if (sign == "\u00f7") {
             equation = 'divide';
         };
+
+        x++;
     });
 });
 
+//Evaluates the equation and displays result
 const equals = document.querySelector('#button5');
+let solution;
+let y = 0;
 equals.addEventListener('click', () => {
-    if (operand1 === undefined) {
+    operand1 = parseFloat(numString);
+    operand2 = parseFloat(numString2);
 
-    }
+    if (numString === '' || numString2 === '') {
+        void(0);
+    } else {
+        while (c2.firstChild) {
+            c2.removeChild(c2.firstChild);
+        };
+
+        const display = document.createElement('div');
+        display.classList.add('display');
+        solution = operate(equation, operand1, operand2);
+        display.textContent = solution;
+
+        c2 = document.getElementById('container2');
+        c2.appendChild(display);
+        operand1 = solution;
+        operand2 = undefined;
+
+        y++;
+    };
 });
