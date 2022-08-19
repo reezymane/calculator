@@ -79,7 +79,7 @@ oper.forEach((button) => {
         sign = event.target.innerHTML;
         
         // If user strings several operations
-        if (x > 0 && y === 0 && numString2 != '') {
+        if (x > 0 && numString2 != '') {
             operand1 = parseFloat(numString);
             operand2 = parseFloat(numString2);
 
@@ -140,4 +140,22 @@ equals.addEventListener('click', () => {
 
         y++;
     };
+});
+
+// Makes the Clear button refresh
+const clear = document.querySelector('#button6');
+clear.addEventListener('click', () => {
+    if (numString != '') {
+        while (c2.firstChild) {
+            c2.removeChild(c2.firstChild);
+        };
+    };
+    
+    operand1 = undefined;
+    numString = '';
+    operand2 = undefined;
+    numString2 = '';
+    x = 0;
+    y = 0;
+    z = 0;
 });
