@@ -28,15 +28,23 @@ const operate = function(operator, firstNum, secondNum) {
     }
 };
 
+let operand1 = undefined;
+let operand2 = undefined;
+
+let numString = '';
+let numString2 = '';
+
+//Stores numbers into variable "numString" and "numString2"
 const numbers = document.querySelectorAll('.button1');
 numbers.forEach((button) => {
     button.addEventListener('click' , (event) => {
-        let operand1 = event.target.innerHTML;
+        numText = event.target.innerHTML;
+        numString = numString.concat(numText);
 
         //Number appears in display
         const display = document.createElement('div');
         display.classList.add('display');
-        display.textContent = `${operand1}`;
+        display.textContent = `${numText}`;
 
         let c2 = document.getElementById('container2');
         c2.appendChild(display);
@@ -60,4 +68,11 @@ oper.forEach((button) => {
             equation = 'divide';
         };
     });
+});
+
+const equals = document.querySelector('#button5');
+equals.addEventListener('click', () => {
+    if (operand1 === undefined) {
+
+    }
 });
