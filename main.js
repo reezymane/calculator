@@ -51,11 +51,14 @@ numbers.forEach((button) => {
             c2 = document.getElementById('container2');
             c2.appendChild(display);
         } else {
-            while (c2.firstChild) {
-                c2.removeChild(c2.firstChild);
+            if (numString2 == '') {
+                while (c2.firstChild) {
+                    c2.removeChild(c2.firstChild);
+                };
             };
 
             numText = event.target.innerHTML;
+
             numString2 = numString2.concat(numText);
 
             const display = document.createElement('div');
@@ -82,12 +85,50 @@ numberZero.addEventListener('click' , (event) => {
         c2 = document.getElementById('container2');
         c2.appendChild(display);
     } else {
-        while (c2.firstChild) {
-            c2.removeChild(c2.firstChild);
+        if (numString2 == '') {
+            while (c2.firstChild) {
+                c2.removeChild(c2.firstChild);
+            };
         };
 
         numText = event.target.innerHTML;
         numString2 = numString2.concat(numText);
+
+        const display = document.createElement('div');
+        display.classList.add('display');
+        display.textContent = `${numText}`;
+
+        c2 = document.getElementById('container2');
+        c2.appendChild(display);
+    };
+});
+
+const decimal = document.querySelector('#button4');
+decimal.addEventListener('click', (event) => {
+    if (x === 0) {
+        numText = event.target.innerHTML;
+        numString = numString.concat(numText);
+
+        decimal.disabled = true;
+
+        // Number appears in display
+        const display = document.createElement('div');
+        display.classList.add('display');
+        display.textContent = `${numText}`;
+
+        c2 = document.getElementById('container2');
+        c2.appendChild(display);
+    } else {
+        if (numString2 == '') {
+            while (c2.firstChild) {
+                c2.removeChild(c2.firstChild);
+            };
+        };
+
+        numText = event.target.innerHTML;
+        numString2 = numString2.concat(numText);
+
+        decimal.disabled = true;
 
         const display = document.createElement('div');
         display.classList.add('display');
@@ -107,6 +148,10 @@ const oper = document.querySelectorAll('.button2');
 oper.forEach((button) => {
     button.addEventListener('click', (event) => {
         sign = event.target.innerHTML;
+
+        if (decimal.disabled === true) {
+            decimal.disabled = false;
+        };
         
         // If user strings several operations
         if (x > 0 && numString2 != '') {
@@ -165,6 +210,10 @@ equals.addEventListener('click', () => {
     operand1 = parseFloat(numString);
     operand2 = parseFloat(numString2);
 
+    if (decimal.disabled === true) {
+        decimal.disabled = false;
+    };
+
     if (numString === '' || numString2 === '') {
         void(0);
     } else if (operand2 === 0 && equation === 'divide') {
@@ -205,6 +254,8 @@ clear.addEventListener('click', () => {
             c2.removeChild(c2.firstChild);
         };
     };
+
+    decimal.disabled = false;
     
     operand1 = undefined;
     numString = '';
