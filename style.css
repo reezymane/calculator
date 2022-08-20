@@ -1,3 +1,7 @@
+html {
+    background-color: rgb(64, 155, 136);
+}
+
 body {
     margin: 0px;
     display: flex;
@@ -8,6 +12,9 @@ body {
 #title {
     font-size: 48px;
     font-weight: bolder;
+    color: rgb(254, 247, 237);
+    text-decoration: underline;
+    font-style: italic;
 }
 
 #container1 {
@@ -15,16 +22,20 @@ body {
     flex-direction: column;
     max-width: 400px;
     max-height: 600px;
+    background-color: rgb(47, 109, 96);
+    border-radius: 10px;
 }
 
 #container2 {
-    border: 3px solid #898888;
-    border-radius: 5px;
+    border: 2px solid #272727;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100px;
     width: 396px;
+    background-color: rgb(234, 234, 234);
+    font-size: 20px;
 }
 
 #container3 {
@@ -47,18 +58,29 @@ body {
 #button5 {
     width: 100px;
     height: 100px;
-    font-size: 14px;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
 #button3 {
     width: 200px;
     height: 100px;
-    font-size: 14px;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
 #button6 {
     width: 300px;
     height: 100px;
-    font-size: 14px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+#container5 .button2 {
+    background-color: rgb(250, 179, 92);
+}
+
+#container5 #button5 {
+    background-color: rgb(248, 135, 59);
 }
 
