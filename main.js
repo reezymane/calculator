@@ -67,6 +67,10 @@ numbers.forEach((button) => {
 
             c2 = document.getElementById('container2');
             c2.appendChild(display);
+
+            oper.forEach((button) => {
+                button.style.setProperty('background-color', 'rgb(250, 179, 92)');
+            });
         };
     });
 });
@@ -100,6 +104,10 @@ numberZero.addEventListener('click' , (event) => {
 
         c2 = document.getElementById('container2');
         c2.appendChild(display);
+
+        oper.forEach((button) => {
+            button.style.setProperty('background-color', 'rgb(250, 179, 92)');
+        });
     };
 });
 
@@ -148,6 +156,8 @@ const oper = document.querySelectorAll('.button2');
 oper.forEach((button) => {
     button.addEventListener('click', (event) => {
         sign = event.target.innerHTML;
+
+        button.style.setProperty('background-color', 'rgb(237, 217, 187)');
 
         if (decimal.disabled === true) {
             decimal.disabled = false;
@@ -264,4 +274,28 @@ clear.addEventListener('click', () => {
     x = 0;
     y = 0;
     z = 0;
+
+    oper.forEach((button) => {
+        button.style.setProperty('background-color', 'rgb(250, 179, 92)');
+    });
+});
+
+// Backspace button deletes
+const back = document.querySelector('#button7');
+back.addEventListener('click', () => {
+    if (x > 0 || y > 0) {
+        void(0);
+    } else {
+        c2.removeChild(c2.lastChild);
+    
+        if (numString.charAt(numString.length - 1) === '.' || numString2.charAt(numString2.length - 1) === '.') {
+            decimal.disabled = false;
+        };
+    
+        if (x === 0) {
+            numString = numString.substring(0 , (numString.length - 1));
+        } else {
+            numString2 = numString2.substring(0 , (numString2.length - 1));
+        };
+    };
 });
